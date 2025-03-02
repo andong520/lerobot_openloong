@@ -381,8 +381,10 @@ class PI0Policy(PreTrainedPolicy):
     def prepare_language(self, batch) -> tuple[Tensor, Tensor]:
         """Tokenize the text input"""
         device = batch[OBS_ROBOT].device
-        tasks = batch["task"]
-
+        
+        # tasks = ["The battery is being conveyed on the conveyor belt. When the battery reaches in front of you, extend your left arm to first grab the nearest battery and place it into the blue slot on the left. Then, use your left arm to grab another battery and place it into the blue slot on the left. Afterward, use your right arm to grab the gray box containing the batteries and place it into the black box on the right."]
+        # tasks = batch["task"]
+        tasks = ["pick battery"]
         # PaliGemma prompt has to end with a new line
         tasks = [task if task.endswith("\n") else f"{task}\n" for task in tasks]
 
